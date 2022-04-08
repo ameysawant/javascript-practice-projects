@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <title>:: 2 ::</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
+
+      body {
+        font-family: "Oswald", sans-serif;
+        height: 90vh;
+        align-items: center;
+        display: flex;
+      }
+
+      .check-box-sec {
+        padding: 100px 0;
+        background: #d0e9ff;
+        width: 100%;
+        position: relative;
+      }
+
+      .check-box-sec .box {
+        padding: 30px;
+        background: #ffdf6a;
+        display: flex;
+        justify-content: space-between;
+        border: 4px dashed #fff;
+        border-radius: 10px;
+      }
+
+      .box span {
+        padding: 15px;
+      }
+
+      .check-box-sec .box .check-box-button {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .check-box-sec .demo {
+        font-size: 18px;
+        background: #000000c5;
+        padding: 15px;
+        color: #fff;
+        display: inline-block;
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="check-box-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center text-capitalize mb-5">
+            <h1>check box on click value show</h1>
+          </div>
+
+          <div class="col-sm-6 offset-lg-3 mb-4">
+            <div class="box vs" id="form-box">
+              <input
+                type="number"
+                class="form-control"
+                id="first_value"
+                placeholder="first value"
+              />
+
+              <span></span>
+
+              <input
+                type="number"
+                class="form-control"
+                id="last_value"
+                placeholder="last value"
+              />
+
+              <span>=</span>
+
+              <div class="demo" id="demo"></div>
+            </div>
+          </div>
+
+          <div class="allRadios col-sm-6 offset-lg-3">
+            <div class="box">
+              <div class="check-box-button">
+                <label>
+                  <input
+                    type="radio"
+                    name="radio"
+                    value="check one"
+                    class="button"
+                  />
+                  +
+                </label>
+              </div>
+
+              <div class="check-box-button">
+                <label>
+                  <input
+                    type="radio"
+                    name="radio"
+                    value="check two"
+                    class="button"
+                  />
+                  -
+                </label>
+              </div>
+
+              <div class="check-box-button">
+                <label>
+                  <input
+                    type="radio"
+                    name="radio"
+                    value="check three"
+                    class="button"
+                  />
+                  *
+                </label>
+              </div>
+
+              <div class="check-box-button">
+                <label
+                  ><input
+                    type="radio"
+                    name="radio"
+                    value="check four"
+                    class="button"
+                  />
+                  /
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- <script>
+
+
+        function get_value (){
+
+            let first_value = parseInt(document.getElementById("first_value").value);
+
+            let last_value = parseInt(document.getElementById("last_value").value);
+
+            return total = first_value + last_value;
+        
+        }
+
+
+        function myFun(First_value, last_value) {
+
+            
+
+        }
+
+
+        
+
+
+
+
+    </script> -->
+
+    <!-- <script>
+      function myFun(pra_one) {
+        let first_value = parseInt(
+          document.getElementById("first_value").value
+        );
+
+        let last_value = parseInt(document.getElementById("last_value").value);
+
+        let total = 0;
+
+        if (pra_one == "plus") {
+          total = Sum(first_value, last_value);
+        } else if (pra_one == "-") {
+          total = subtract(first_value, last_value);
+        } else if (pra_one == "*") {
+          total = multipication(first_value, last_value);
+        } else if (pra_one == "/") {
+          total = divide(first_value, last_value);
+        }
+
+        document.getElementById("demo").innerHTML = total;
+      }
+
+      function Sum(p_1, p_2) {
+        return p_1 + p_2;
+      }
+
+      function subtract(p_1, p_2) {
+        return p_1 - p_2;
+      }
+
+      function multipication(p_1, p_2) {
+        return p_1 * p_2;
+      }
+
+      function divide(p_1, p_2) {
+        return p_1 / p_2;
+      }
+    </script> -->
+
+    <script>
+      const firstValue = document.querySelector("#first_value");
+      const lastValue = document.querySelector("#last_value");
+      const allRadioButtons = [
+        ...document.querySelectorAll(".allRadios .box .check-box-button input"),
+      ];
+      console.log(allRadioButtons);
+      const calculator = (firstValue, lastValue) => {
+        allRadioButtons.forEach((input, index) => {
+          input.addEventListener("click", (e) => {
+            let val = e.target.value;
+            let demo = document.getElementById("demo");
+            let fValue = firstValue.value;
+            let lValue = lastValue.value;
+            if (fValue !== "" && lValue !== "") {
+              if (val === "check one") {
+                demo.innerHTML = parseInt(fValue) + parseInt(lValue);
+                demo.style.background = "black";
+              } else if (val === "check two") {
+                demo.innerHTML = parseInt(fValue) - parseInt(lValue);
+                demo.style.background = "black";
+              } else if (val === "check three") {
+                demo.innerHTML = parseInt(fValue) * parseInt(lValue);
+                demo.style.background = "black";
+              } else if (val === "check four") {
+                demo.innerHTML = parseInt(fValue) / parseInt(lValue);
+                demo.style.background = "black";
+              } else {
+                console.log("SOME ERROR");
+              }
+            } else {
+              demo.style.background = "red";
+              demo.innerHTML = " enter some value";
+            }
+          });
+        });
+      };
+      calculator(firstValue, lastValue);
+    </script>
+  </body>
+</html>
+<!-- fValue !== "" && lValue !== "" && fValue !== "" && lValue !== "" && fValue !==
+"" && lValue !== "" && -->

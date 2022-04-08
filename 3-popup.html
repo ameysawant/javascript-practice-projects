@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        position: relative;
+        margin: auto;
+        width: 800px;
+        text-align: center;
+      }
+      .btn {
+        padding: 1rem;
+        background-color: #ddd;
+        border: none;
+        color: black;
+        position: absolute;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      .container .btn:nth-child(1) {
+        top: 5%;
+        left: 30%;
+      }
+      .container .btn:nth-child(2) {
+        top: 20%;
+        right: 30%;
+      }
+      .container .btn:nth-child(3) {
+        top: 80%;
+        left: 40%;
+      }
+      .modal-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        top: 0;
+        left: 0;
+        right: 0;
+        display: none;
+      }
+      .modal-container .modal {
+        margin: auto;
+        max-width: 500px;
+        width: 100%;
+        background-color: orange;
+        padding: 3rem;
+        position: relative;
+      }
+      .modal-container .modal .closeBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="btn" type="button">1</button>
+      <button class="btn" type="button">2</button>
+      <button class="btn" type="button">3</button>
+      <img
+        src="https://static.wixstatic.com/media/2c0034_d8d47b268bb34632af034459e334cbe8~mv2.jpg"
+        alt=""
+      />
+    </div>
+    <div class="modal-container">
+      <div class="modal">
+        <button class="btn closeBtn" type="button">x</button>
+        <div class="description"></div>
+      </div>
+    </div>
+
+    <script>
+      const allButtons = [...document.querySelectorAll(".container .btn")];
+      const closeBtn = document.querySelector(".modal .closeBtn");
+      const modalContainer = document.querySelector(".modal-container");
+      const description = document.querySelector(
+        ".modal-container .modal .description"
+      );
+      const data = [
+        {
+          id: 1,
+          heading: "Point 1",
+          description:
+            "point 1point 1 point 1 point 1 point 1 point 1 point 1 point 1 point 1",
+        },
+        {
+          id: 2,
+          heading: "Point 2",
+          description:
+            "point2 point2  point2  point2  point2  point2  point2  point2  point2 ",
+        },
+        {
+          id: 3,
+          heading: "Point 3",
+          description:
+            "point 3point 3 point 3 point 3 point 3 point 3 point 3 point 3 point 3",
+        },
+      ];
+
+      const modal = (allButtons, data) => {
+        allButtons.forEach((button, btnIndex) => {
+          button.addEventListener("click", (e) => {
+            data.forEach((item) => {
+              // parseInt(e.target.innerText) === item.id;  //you can use this logic as well
+              if (btnIndex + 1 === item.id) {
+                modalContainer.style.display = "flex";
+                description.innerHTML = `<h1>${item.heading}</h1>
+        <p>
+          ${item.description}
+        </p>`;
+              }
+            });
+          });
+        });
+        closeBtn.addEventListener(
+          "click",
+          () => (modalContainer.style.display = "none")
+        );
+        modalContainer.addEventListener(
+          "click",
+          () => (modalContainer.style.display = "none")
+        );
+      };
+      modal(allButtons, data);
+    </script>
+  </body>
+</html>
