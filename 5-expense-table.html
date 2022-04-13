@@ -44,7 +44,7 @@
   </head>
   <body>
     <form>
-      <input name="sr.no" value="1" type="number" placeholder="sr.no" />
+      <input name="sr.no" type="number" placeholder="sr.no" />
       <input name="date" type="date" placeholder="date" />
       <input name="item" type="text" placeholder="item name" />
       <input name="qty" type="text" placeholder="quantity" />
@@ -78,13 +78,15 @@
         e.preventDefault();
         const tr = document.createElement("tr");
         inputs.forEach((input, index) => {
-          const td = document.createElement("td");
-          tr.appendChild(td);
-          const values = document.createTextNode(input.value);
-          td.appendChild(values);
-          console.log(td);
-          datafield.insertAdjacentElement("beforebegin", tr);
-          input.value = "";
+          if (input.value !== "") {
+            const td = document.createElement("td");
+            tr.appendChild(td);
+            const values = document.createTextNode(input.value);
+            td.appendChild(values);
+            console.log(td);
+            datafield.insertAdjacentElement("beforebegin", tr);
+            input.value = "";
+          }
         });
       });
     </script>
