@@ -69,7 +69,7 @@
         <tr class="datafield"></tr>
         <tr>
           <td colspan="4" align="right"><b>TOTAL</b></td>
-          <td>0.00</td>
+          <td class="total"></td>
         </tr>
       </table>
     </div>
@@ -85,6 +85,8 @@
         const qty = document.getElementById("qty").value;
         const amt = document.getElementById("amt").value;
         let error = document.querySelector(".error");
+        let total = document.querySelector(".total");
+        let totalAmt = 0;
 
         if (srno === "") {
           error.innerHTML = "srno required";
@@ -105,6 +107,7 @@
             const values = document.createTextNode(input.value);
             td.appendChild(values);
             datafield.insertAdjacentElement("beforebegin", tr);
+            console.log(td);
             input.value = "";
           });
         }
