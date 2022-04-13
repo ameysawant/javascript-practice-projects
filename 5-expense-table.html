@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>expense table</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        float: left;
+        width: 800px;
+      }
+      table,
+      td,
+      th {
+        border: 1px solid;
+        padding: 0.5rem;
+      }
+      table th {
+        background-color: #ddd;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+      form {
+        float: left;
+        max-width: 20%;
+        padding: 1rem;
+      }
+      form input {
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input name="sr.no" value="1" type="number" placeholder="sr.no" />
+      <input name="date" type="date" placeholder="date" />
+      <input name="item" type="text" placeholder="item name" />
+      <input name="qty" type="text" placeholder="quantity" />
+      <input name="amt" type="text" placeholder="price" />
+      <button type="submit">submit</button>
+    </form>
+
+    <div class="container">
+      <table>
+        <tr>
+          <th width="10%">Sr.No.</th>
+          <th width="10%">Date</th>
+          <th width="60%">Name</th>
+          <th width="10%">Quantity</th>
+          <th width="10%">Price</th>
+        </tr>
+        <tr class="datafield"></tr>
+        <tr>
+          <td colspan="4" align="right"><b>TOTAL</b></td>
+          <td>0.00</td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      const button = document.querySelector("button");
+      const inputs = [...document.querySelectorAll("input")];
+      const datafield = document.querySelector(".datafield");
+
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const tr = document.createElement("tr");
+        inputs.forEach((input, index) => {
+          const td = document.createElement("td");
+          tr.appendChild(td);
+          const values = document.createTextNode(input.value);
+          td.appendChild(values);
+          console.log(td);
+          datafield.insertAdjacentElement("beforebegin", tr);
+          input.value = "";
+        });
+      });
+    </script>
+  </body>
+</html>
